@@ -63,11 +63,10 @@
                 <div class="third-panel">
                     <select class="font-type" onchange="onChangeFont(this.value)">
                         <img src="ICONS/up-and-down.png" />
-                        <option value="Impact">Impact</option>
-                        <option value="Arial">Arial</option>
-                        <option>add</option>
+                        <option class="font-impact" value="Impact">Impact</option>
+                        <option class="font-arial" value="Arial">Arial</option>
+                        <option class="font-serif" value = "Serif">Serif</option>
                     </select>
-                    <!-- change to input colors -->
                     <button class="color-stroke btn" onclick="onClickStrokeFontColor()"><img
                             src="ICONS/text stroke.png" /></button>
                     <input class="stroke-input" type="color" onchange="onChangeStrokeFontColor(this.value)" hidden>
@@ -77,13 +76,9 @@
                 </div>
                 <div class="fourth-panel">
                     <button class="download btn">
-                        <!-- <i class="fa fa-download"></i> -->
                         <a href="#" onclick="onDownloadCanvas(this)" download="meme.jpg">
                             <img src="ICONS/download2.png" /> </a>
-                        <!-- <i class="fa fa-cloud-download-alt"></i> -->
-                        <!-- </a> -->
                     </button>
-                    <!-- <a href="#" onclick="downloadCanvas(this)" download="">Download</a> -->
 
                     <button class="share btn" onclick="onUploadAndShare()"><img
                             src="ICONS/facebook-logo.png" /></button>
@@ -113,13 +108,3 @@
 </body>
 
 </html>
-
-<!-- <div class="inputs">
-    <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
-    
-    <button class="btn" onclick="uploadImg()">Upload Image from Canvas</button>
-    
-    <a href="#" class="btn" onclick="downloadImg(this)" download="my-img.jpg">Download as jpeg</a>
-    <p class="user-msg"></p>
-    <div class="share-container"></div>
-  </div> -->
