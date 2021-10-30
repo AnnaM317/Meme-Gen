@@ -115,7 +115,9 @@ function drawRect() {
     if (gMeme.selectedLineIdx === null) return;
     var metrics = gCtx.measureText(gMeme.lines[gMeme.selectedLineIdx].txt);
     var textWidth = metrics.width + 15;
-    var textHeigth = metrics.fontBoundingBoxAscent + 5;//
+    var textHeigth = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent + 15;//
+
+    // var textHeigth = metrics.fontBoundingBoxAscent + 5;//
     if (gMeme.lines[gMeme.selectedLineIdx].align === 'left') {
         var x = gMeme.lines[gMeme.selectedLineIdx].x - 10;
     }
@@ -163,9 +165,10 @@ function renderCanvas() {
     img.src = image.url;
     img.onload = function () {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
-        gMeme.lines.forEach(function (line) {
+        gMeme.lines.forEach(function (line, idx) {
             drawText(line);
-            drawRect();
+            if (idx === gMeme.selectedLineIdx)
+                drawRect();
         })
     }
 }
