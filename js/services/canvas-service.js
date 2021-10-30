@@ -70,20 +70,15 @@ function addTouchListeners() {
 function onDown(ev) {
     console.log('ev', ev);
     const pos = getEvPos(ev);
-
-    // setClickedLine(pos);
-    // if (!isLineClicked(pos)) return;
     if (getClickedLine(pos) === null) return;
     setLineDrag(true);
     gStartPos = pos;
     document.body.style.cursor = 'grabbing';
-    //?
     renderCanvas();
 
 }
 
 function onMove(ev) {
-    // const circle = getCircle();
     if (gMeme.selectedLineIdx === null) return;
     if (gMeme.lines[gMeme.selectedLineIdx].isDrag) {
         const pos = getEvPos(ev)

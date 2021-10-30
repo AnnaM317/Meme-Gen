@@ -4,8 +4,6 @@ var gImages = [];
 _createImages();
 
 function onInit() {
-    // console.log(gImages);
-    // resizeCanvas()
     renderImages();
 }
 

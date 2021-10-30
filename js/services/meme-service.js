@@ -3,21 +3,8 @@ var gMeme;
 function createMeme(imgId) {
     var meme = {
         selectedImgId: imgId,
-        //problem- deleting row zero and selected index stays zero? 
         selectedLineIdx: null,
-        lines: [
-            // {
-            //     txt: '',
-            //     fontSize: 50,
-            //     align: 'center',
-            //     strokeColor: 'white',
-            //     color: 'black',
-            //     x: gElCanvas.width / 2,
-            //     y: 70,
-            //     font: 'Impact',
-            //     isDrag: false
-            // },
-        ]
+        lines: []
     }
     gMeme = meme;
 
@@ -28,13 +15,7 @@ function addLine() {
     gMeme.selectedLineIdx = gMeme.lines.length;//?-1
     var x, y;
     console.log('gMeme.selectedLineIdx', gMeme.selectedLineIdx);
-    // if (gMeme.selectedLineIdx === 0) {
-    //     x = gElCanvas.width / 2;
-    //     y = 50;
-
-    // }
     if (gMeme.selectedLineIdx === 0) {
-        // createMeme(gMeme.selectedImgId);
         x = gElCanvas.width / 2;
         y = 70;
     }
@@ -86,10 +67,8 @@ function toggleFocus() {
 
 
 }
-//problem deleting 0 before 1
 function deleteLine() {
     if (gMeme.selectedLineIdx !== null) {
-        //only one line - 0
         if (gMeme.lines.length === 1) {
             gMeme.lines.splice(gMeme.selectedLineIdx, 1);
             gMeme.selectedLineIdx = null;
@@ -98,8 +77,6 @@ function deleteLine() {
         else if (gMeme.selectedLineIdx === gMeme.lines.length - 1) {
             gMeme.lines.splice(gMeme.selectedLineIdx, 1);
             gMeme.selectedLineIdx = 0;
-            // document.querySelector('.input-text').value = gMeme.lines[gMeme.selectedLineIdx].txt;
-            // problem when deleting a line ant the old text left on the input
         }
 
         else {
