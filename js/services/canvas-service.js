@@ -103,7 +103,6 @@ function onUp() {
 
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container');
-    // gElCanvas.width = (500 * elContainer.offsetWidth) / 500;
     gElCanvas.height = elContainer.offsetWidth;
     gElCanvas.width = elContainer.offsetWidth;
 }
