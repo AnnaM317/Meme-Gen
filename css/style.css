@@ -6,17 +6,17 @@
 
  @font-face {
     font-family: eurofurence;
-    src: url(/fonts/eurofurence/eurof55.ttf);
+    src: url(fonts/eurofurence/eurof55.ttf);
 } 
 
 @font-face {
     font-family: Lato-Bold;
-    src: url(/fonts/Lato/Lato-Bold.ttf);
+    src: url(fonts/Lato/Lato-Bold.ttf);
 }
 
 @font-face {
     font-family: Lato-Regular;
-    src: url(/fonts/Lato/Lato-Regular.ttf);
+    src: url(fonts/Lato/Lato-Regular.ttf);
 } 
 .font-impact{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -37,11 +37,11 @@ body {
 }
 .main-content{
     background-color: #ff7f00;
-
     margin: 0 auto;
     border-radius: 10px;
     max-width:1020px;
     /* min-height: 70vh; */
+    border-radius: 3rem;
 }
 
 /* .main-content-gallary{ */
@@ -67,7 +67,7 @@ body {
   
 /* } */
 
-.main-gallary-container{
+.main-gallery-container{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 200px));
     grid-template-rows: repeat(auto-fill, 200px);
@@ -76,18 +76,44 @@ body {
     justify-content: center;
     align-content: center;
 }
-#meme-canvas img{
+
+.saved-memes-content{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 200px));
+    grid-template-rows: repeat(auto-fill, 200px);
+    gap: 1rem;
+    padding: 10px;
+    justify-content: center;
+    align-content: center;
+}
+
+.saved-memes-container{
+    min-height: 67vh;
+}
+
+.img-gallery{
+    border-radius: 1em ;
+}
+
+.img-gallery:hover {
+    cursor: pointer;
+    border: 3px solid black;
+}
+
+/* #meme-canvas img{
     display: flex;
     width: 100%;
     object-fit: cover;
     border-radius: 2em;
-} 
+}  */
 
 img {
     width: 100%;
 }
 
 .meme-container{
+    /* align-items: center; */
+
     margin: 0 auto;
     display: flex;
     justify-content:flex-start;
@@ -95,16 +121,24 @@ img {
 }
 
 .canvas-container{
+    /* justify-content: center; */
+    /* align-items: center; */
+
     display: flex;
     flex-basis: 50%;
+    max-width: 500px;
     padding: 10px;
 }
 
-#meme-canvas{
+ #meme-canvas{
     width:100%;
-    object-fit: contain;
+    /* object-fit: contain; */
 
-}
+    border: 3px solid black;
+    border-radius: 3rem;
+    cursor: grab;
+
+} 
 
 .edit-container{
     display: flex;
@@ -125,14 +159,14 @@ img {
 }
 
 .first-panel{
-    margin-block-end: 5px;
+    margin-block-end: 3px;
 }
 .second-panel{
-    margin-block-end: 5px;
+    margin-block-end: 3px;
 }
 
 .third-panel{
-    margin-block-end: 5px;
+    margin-block-end: 3px;
     display:flex;
     justify-content: space-between;
     gap:7px;
@@ -150,6 +184,7 @@ img {
 button{
     cursor: pointer;
 }
+
 .btn{
     background-color: #efefef;
     width: 50px;
@@ -172,11 +207,21 @@ button{
     /* height: 100%; */
 }
 
+/* check again */
+.btn-menu{
+    background-color: black;
+    color: orange;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
 .header-content .logo {
-    font-size: 2.5rem;
+    width:12rem;
+    /* font-size: 2.5rem;
     color: #FFFFFF;
     letter-spacing: .03em;
-    font-family: eurofurence, serif;
+    font-family: eurofurence, serif; */
     /* text-transform: uppercase; */
 }
 
@@ -252,6 +297,8 @@ button{
     color: #FFFFFF;
     font-size: 2em;
     font-family: eurofurence, serif;
+    width:12rem;
+
 }
 
   /* SCREENS */
@@ -278,6 +325,11 @@ body.menu-open .main-screen {
  @media (max-width: 620px) {
     .meme-container{
        flex-direction:column;
+       align-items: center;
+    }
+
+    .canvas-container{
+        max-width: 300px;
     }
 
     .main-nav {
@@ -291,17 +343,18 @@ body.menu-open .main-screen {
         transform: translateX(100%);
         border-inline-start: 1px solid #e0e0e0;
         transition: transform .6s, box-shadow .6s;
-
     } 
+
     body.menu-open .main-nav {
         transform: translateX(0);
         box-shadow: -2px -2px 20px rgba(0, 0, 0, .25);
     }
+
     .main-nav>*:not(:last-child) {
         margin: 0;
     }
-    .main-header .header-content .main-nav li a{
 
+    .main-header .header-content .main-nav li a{
         display: block;
         /* color:#1e1e1e; */
         color:white;
@@ -309,9 +362,11 @@ body.menu-open .main-screen {
         border-bottom: 1px solid #e0e0e0;
         transition: background .3s;
     } 
+
     .main-nav a:hover {
         background: #ff7f00;
     } 
+
     header .header-content .main-nav li a {
         display: flex;
         justify-content: center;
@@ -322,8 +377,14 @@ body.menu-open .main-screen {
         text-decoration: none;
         transition: 0.5s;
         width: 100%;
-      
     }
+
+    /* .btn{
+        width: 35px;
+        height: 35px;
+        padding: 5px;
+        border-radius: 1em;
+    } */
 }
 
 @media (min-width: 620px) {

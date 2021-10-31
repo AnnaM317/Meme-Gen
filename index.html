@@ -6,23 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme-Gen</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body onload="onInit()">
+    <div>
+
+    </div>
     <div class="main-screen" onclick="toggleMenu()"></div>
 
     <header class="main-header main-layout">
 
         <div class="header-content">
-            <div class="logo" src="">Meme-Gen</div>
+            <div class="logo"><img src="icons/LOGO.png"></div>
             <nav>
                 <ul class="main-nav">
-                    <li><a href="#" onclick="onOpenGallary()">Gallery</a></li>
-                    <li><a href="#">Memes</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><a href="#" onclick="onOpenGallery()">Gallery</a></li>
+                    <li><a href="#" onclick="onOpenSavedMemes()">Memes</a></li>
+                    <!-- <li><a href="#">About</a></li> -->
                 </ul>
                 <button class="btn-menu" onclick="toggleMenu()">☰</button>
             </nav>
@@ -30,60 +33,67 @@
         </div>
     </header>
     <main class="main-content">
-        <section class="main-content-gallary">
-            <div class="main-gallary-container"></div>
+        <section class="main-content-gallery">
+            <div class="main-gallery-container"></div>
         </section>
         <section class="meme-container" style="display: none">
             <div class="canvas-container">
                 <canvas id="meme-canvas" height="400" width="400"></canvas>
+                <!-- <canvas id="meme-canvas" width="400"></canvas> -->
+
             </div>
             <div class="edit-container">
                 <input class="input-text" type="text" name="text" placeholder="Enter Text Here"
                     oninput="onInputText(this.value)" autofocus />
                 <div class="first-panel">
-                    <button class="move-down btn" onclick="onMoveDown()"><img src="ICONS/arrow-down.png" /></button>
-                    <button class="move-up btn" onclick="onMoveUp()"><img src="ICONS/arrow-up-2.png" /></button>
+                    <button class="move-down btn" onclick="onMoveDown()"><img src="icons/arrow-down.png" /></button>
+                    <button class="move-up btn" onclick="onMoveUp()"><img src="icons/arrow-up-2.png" /></button>
                     <button class="move-toggle btn" onclick="onToggleFocus()"><img
-                            src="ICONS/up-and-down.png" /></button>
-                    <button class="move-add btn" onclick="onAddLine()"><img src="ICONS/add.png" /></button>
-                    <button class="move-trash btn" onclick="onDeleteLine()"><img src=" ICONS/trash.png" /></button>
+                            src="icons/up-and-down.png" /></button>
+                    <button class="move-add btn" onclick="onAddLine()"><img src="icons/add.png" /></button>
+                    <button class="move-trash btn" onclick="onDeleteLine()"><img src=" icons/trash.png" /></button>
                 </div>
                 <div class="second-panel">
                     <button class="font-increase btn" onclick="onFontIncrease()"><img
-                            src="ICONS/increase font.png" /></button>
+                            src="icons/increase font.png" /></button>
                     <button class="font-decrease btn" onclick="onFontDecrease()"><img
-                            src="ICONS/decrease font.png" /></button>
+                            src="icons/decrease font.png" /></button>
                     <button class="align-left btn" onclick="onAlignLeft()"><img
-                            src="ICONS/align-to-left.png" /></button>
+                            src="icons/align-to-left.png" /></button>
                     <button class="align-center btn" onclick="onAlignCenter()"><img
-                            src="ICONS/center-text.png" /></button>
+                            src="icons/center-text.png" /></button>
                     <button class="align-right btn" onclick="onAlignRight()"><img
-                            src="ICONS/align-to-right.png" /></button>
+                            src="icons/align-to-right.png" /></button>
                 </div>
                 <div class="third-panel">
                     <select class="font-type" onchange="onChangeFont(this.value)">
-                        <img src="ICONS/up-and-down.png" />
+                        <img src="icons/up-and-down.png" />
                         <option class="font-impact" value="Impact">Impact</option>
                         <option class="font-arial" value="Arial">Arial</option>
-                        <option class="font-serif" value = "Serif">Serif</option>
+                        <option class="font-serif" value="Serif">Serif</option>
                     </select>
                     <button class="color-stroke btn" onclick="onClickStrokeFontColor()"><img
-                            src="ICONS/text stroke.png" /></button>
+                            src="icons/text stroke.png" /></button>
                     <input class="stroke-input" type="color" onchange="onChangeStrokeFontColor(this.value)" hidden>
                     <button class="font-color btn" onclick="onClickFontColor()"><img
-                            src="ICONS/paint-board.png" /></button>
+                            src="icons/paint-board.png" /></button>
                     <input class="color-input" type="color" onchange="onChangeFontColor(this.value)" hidden>
                 </div>
                 <div class="fourth-panel">
                     <button class="download btn">
                         <a href="#" onclick="onDownloadCanvas(this)" download="meme.jpg">
-                            <img src="ICONS/download2.png" /> </a>
+                            <img src="icons/download2.png" /> </a>
                     </button>
 
                     <button class="share btn" onclick="onUploadAndShare()"><img
-                            src="ICONS/facebook-logo.png" /></button>
-                    <button class="save btn"><img src="ICONS/save_.png" /></button>
+                            src="icons/facebook-logo.png" /></button>
+                    <button class="save btn" onclick="onSaveMeme()"><img src="icons/save_.png" /></button>
                 </div>
+
+            </div>
+        </section>
+        <section class="saved-memes-container" style="display: none">
+            <div class="saved-memes-content">
 
             </div>
         </section>
@@ -91,7 +101,7 @@
 
     <footer class="main-footer">
         <div class="footer-container">
-            <div class="logo">Meme-Gen</div>
+            <div class="logo"><img src="icons/LOGO.png"></div>
     </footer>
 
     <script>
@@ -100,11 +110,14 @@
         }
     </script>
 
+    <script src="js/services/storage-service.js"></script>
+    <script src="js/services/saved-memes-service.js"></script>
     <script src="js/services/upload-service.js"></script>
     <script src="js/services/canvas-service.js"></script>
     <script src="js/services/meme-service.js"></script>
+    <script src="js/services/gallery-service.js"></script>
     <script src="js/meme-controller.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/gallery-controller.js"></script>
 </body>
 
 </html>

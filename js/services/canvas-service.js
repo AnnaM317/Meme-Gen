@@ -1,3 +1,5 @@
+'use strict'
+
 var gElCanvas = document.getElementById('meme-canvas');
 var gCtx = gElCanvas.getContext("2d");
 var gStartPos;
@@ -27,10 +29,12 @@ function isLineClicked(line, clickedPos) {
 function getClickedLine(clickedPos) {
     var clickedLine = null;
     if (gMeme.selectedLineIdx === null) return null;
+    //some         /every
     gMeme.lines.forEach(function (line, idx) {
         if (isLineClicked(line, clickedPos)) {
             clickedLine = idx;
             gMeme.selectedLineIdx = clickedLine;
+            document.querySelector('.input-text').value = gMeme.lines[gMeme.selectedLineIdx].txt;
         }
     });
     return clickedLine;
@@ -68,7 +72,7 @@ function addTouchListeners() {
 }
 
 function onDown(ev) {
-    console.log('ev', ev);
+    // console.log('ev', ev);
     const pos = getEvPos(ev);
     if (getClickedLine(pos) === null) return;
     setLineDrag(true);
@@ -98,16 +102,17 @@ function onUp() {
 
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container');
-    gElCanvas.height = elContainer.offsetWidth;
+    gElCanvas.height = elContainer.offsetHeight;
     gElCanvas.width = elContainer.offsetWidth;
 }
 
 
 function downloadCanvas(elLink) {
     const data = gElCanvas.toDataURL('image/jpeg');
-    console.log('data', data);
+    // console.log('data', data);
     elLink.href = data;
     elLink.download = 'meme.jpg';
+
 }
 
 
@@ -164,10 +169,12 @@ function renderCanvas() {
     var image = getImageById(gMeme.selectedImgId);
     img.src = image.url;
     img.onload = function () {
+        // gElCanvas.height = (image.height * gElCanvas.width) / image.width;
+        // console.log(img);
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
         gMeme.lines.forEach(function (line, idx) {
             drawText(line);
-            if (idx === gMeme.selectedLineIdx)
+            if (idx === gMeme.selectedLineIdx) //for the problem of 2 borders
                 drawRect();
         })
     }

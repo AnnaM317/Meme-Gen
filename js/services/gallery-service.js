@@ -3,9 +3,6 @@
 var gImages = [];
 _createImages();
 
-function onInit() {
-    renderImages();
-}
 
 function _createImage(id, url, keywords) {
     return {
@@ -38,11 +35,6 @@ function _createImages() {
     ]
 }
 
-function onOpenGallary() {
-    document.querySelector('.main-content-gallary').style.display = 'block';
-    document.querySelector('.meme-container').style.display = 'none';
-    renderImages();
-}
 
 function getImagesForDisplay() {
     return gImages;
@@ -51,31 +43,18 @@ function getImagesForDisplay() {
 function renderImages() {
     var images = getImagesForDisplay();
     var strHtmls = images.map(function (img) {
-        return `<img class="img-gallary" src="${img.url}" alt="${img.keywords[0]}" onclick="onClickMeme(${img.id})" />`;
+        return `<img class="img-gallery" src="${img.url}" alt="${img.keywords[0]}" onclick="onClickMeme(${img.id})" />`;
     });
-    document.querySelector('.main-gallary-container').innerHTML = strHtmls.join('');
+    document.querySelector('.main-gallery-container').innerHTML = strHtmls.join('');
 }
 
-//should be in gallary service
 function getImageById(imgId) {
     return gImages.find(function (img) {
         return img.id === imgId;
     })
 }
 
-function onClickMeme(imgId) {
-    document.querySelector('.main-content-gallary').style.display = 'none';
-    document.querySelector('.meme-container').style.display = 'flex';
-    resizeCanvas();
-    createMeme(imgId);
-    renderCanvas();
-    addListeners();
-}
 
-
-function onImgInput(ev) {
-    loadImageFromInput(ev, renderImg)
-}
 
 
 
