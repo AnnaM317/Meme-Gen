@@ -42,10 +42,12 @@ function getClickedLine(clickedPos) {
 
 //service
 function setLineDrag(isDrag) {
+    if (gMeme.selectedLineIdx === null) return;
     gMeme.lines[gMeme.selectedLineIdx].isDrag = isDrag;
 }
 //service
 function moveLine(dx, dy) {
+    if (gMeme.selectedLineIdx === null) return;
     gMeme.lines[gMeme.selectedLineIdx].x += dx;
     gMeme.lines[gMeme.selectedLineIdx].y += dy;
 }
@@ -77,7 +79,8 @@ function onDown(ev) {
     if (getClickedLine(pos) === null) return;
     setLineDrag(true);
     gStartPos = pos;
-    document.body.style.cursor = 'grabbing';
+    // document.body.style.cursor = 'grabbing';
+    gElCanvas.style.cursor = 'grabbing';
     renderCanvas();
 
 }
@@ -96,7 +99,8 @@ function onMove(ev) {
 
 function onUp() {
     setLineDrag(false);
-    document.body.style.cursor = 'grab'
+    gElCanvas.style.cursor = 'grab';
+    // document.body.style.cursor = 'grab'
 }
 
 

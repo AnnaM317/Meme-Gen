@@ -103,6 +103,11 @@ function onUploadAndShare() {
 }
 
 function onSaveMeme() {
+    // console.log(document.querySelector('.save btn'));
+    document.querySelector('.save-btn').innerHTML = `<img src="icons/done.png" />`
+    setTimeout(() => {
+        document.querySelector('.save-btn').innerHTML = `<img src="icons/save_.png" />`
+    }, 1500);
     saveMeme();
 }
 
